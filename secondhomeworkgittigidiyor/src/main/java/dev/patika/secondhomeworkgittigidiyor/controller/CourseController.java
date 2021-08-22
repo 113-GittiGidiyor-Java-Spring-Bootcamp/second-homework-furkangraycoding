@@ -1,6 +1,7 @@
 package dev.patika.secondhomeworkgittigidiyor.controller;
 
 import dev.patika.secondhomeworkgittigidiyor.model.Course;
+import dev.patika.secondhomeworkgittigidiyor.model.Student;
 import dev.patika.secondhomeworkgittigidiyor.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,18 @@ public class CourseController {
         return courseService.save(course);
 
     }
+
+    @DeleteMapping("/courses/{id}")
+    public String deleteEmployeeById(@PathVariable int id){
+        courseService.deleteById(id);
+        return "Deleted...";
+    }
+
+    @PutMapping("/courses")
+    public Course update(@RequestBody Course course){
+        return courseService.update(course);
+    }
+
 
 
 

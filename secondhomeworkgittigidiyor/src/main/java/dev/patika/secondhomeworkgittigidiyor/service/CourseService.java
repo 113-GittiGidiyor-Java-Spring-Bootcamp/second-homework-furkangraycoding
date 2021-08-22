@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,11 +21,16 @@ public class CourseService implements BaseService<Course> {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Course> findAll() {
-        return courseDAOJPA.findAll();
+        List<Course> empList = new ArrayList<>();
+        Iterable<Course> employeeIter = courseDAOJPA.findAll();
+        employeeIter.iterator().forEachRemaining(empList::add);
+        return empList;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Course findById(int id) {
         return (Course) courseDAOJPA.findById(id);
     }
@@ -38,7 +44,14 @@ public class CourseService implements BaseService<Course> {
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
-
+        courseDAOJPA.deleteById(id);
     }
+
+    @Override
+    public Course update(Course course) {
+        return (Course) courseDAOJPA.update(course);
+    }
+
 }

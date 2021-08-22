@@ -19,7 +19,7 @@ public class StudentDAOJPAImpl implements StudentDAO<Student> {
 
     @Override
     public List<Student> findAll() {
-        return entityManager.createQuery("FROM Student s", Student.class).getResultList();
+        return entityManager.createQuery("select s from Student s",Student.class).getResultList();
     }
 
     @Override
@@ -36,7 +36,16 @@ public class StudentDAOJPAImpl implements StudentDAO<Student> {
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
+        Student student = this.findById(id);
 
+        entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public Student update(Student student) {
+        return entityManager.merge(student);
     }
 }

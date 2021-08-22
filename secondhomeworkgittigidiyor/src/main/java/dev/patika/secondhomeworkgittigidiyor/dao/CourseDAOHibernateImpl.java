@@ -1,9 +1,11 @@
 package dev.patika.secondhomeworkgittigidiyor.dao;
 
 import dev.patika.secondhomeworkgittigidiyor.model.Course;
+import dev.patika.secondhomeworkgittigidiyor.model.Instructor;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -39,7 +41,16 @@ public class CourseDAOHibernateImpl implements CourseDAO<Course>{
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
+        Course course = this.findById(id);
 
+        entityManager.remove(course);
+    }
+
+    @Override
+    @Transactional
+    public Course update(Course course) {
+        return entityManager.merge(course);
     }
 }

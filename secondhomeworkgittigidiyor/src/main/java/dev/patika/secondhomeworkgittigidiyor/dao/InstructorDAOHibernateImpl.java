@@ -1,9 +1,11 @@
 package dev.patika.secondhomeworkgittigidiyor.dao;
 
 import dev.patika.secondhomeworkgittigidiyor.model.Instructor;
+import dev.patika.secondhomeworkgittigidiyor.model.Student;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -39,7 +41,16 @@ public class InstructorDAOHibernateImpl implements InstructorDAO<Instructor>{
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
+        Instructor instructor = this.findById(id);
 
+        entityManager.remove(instructor);
+    }
+
+    @Override
+    @Transactional
+    public Instructor update(Instructor instructor) {
+        return entityManager.merge(instructor);
     }
 }

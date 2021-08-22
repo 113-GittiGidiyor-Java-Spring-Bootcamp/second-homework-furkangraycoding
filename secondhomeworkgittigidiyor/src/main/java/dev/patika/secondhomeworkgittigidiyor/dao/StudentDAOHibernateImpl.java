@@ -4,6 +4,7 @@ import dev.patika.secondhomeworkgittigidiyor.model.Student;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -39,7 +40,16 @@ public class StudentDAOHibernateImpl implements StudentDAO<Student>{
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
+        Student student = this.findById(id);
 
+        entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public Student update(Student student) {
+        return entityManager.merge(student);
     }
 }

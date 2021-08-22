@@ -1,6 +1,7 @@
 package dev.patika.secondhomeworkgittigidiyor.service;
 
 import dev.patika.secondhomeworkgittigidiyor.dao.InstructorDAO;
+import dev.patika.secondhomeworkgittigidiyor.model.Course;
 import dev.patika.secondhomeworkgittigidiyor.model.Instructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,7 +39,14 @@ public class InstructorService implements BaseService<Instructor> {
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
-
+        instructorDAOJPA.deleteById(id);
     }
+
+    @Override
+    public Instructor update(Instructor instructor) {
+        return (Instructor) instructorDAOJPA.update(instructor);
+    }
+
 }

@@ -1,5 +1,6 @@
 package dev.patika.secondhomeworkgittigidiyor.controller;
 
+import dev.patika.secondhomeworkgittigidiyor.model.Course;
 import dev.patika.secondhomeworkgittigidiyor.model.Student;
 import dev.patika.secondhomeworkgittigidiyor.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,8 @@ public class StudentController {
         return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
     }
 
-
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> findStudentById(@PathVariable int id){
+    public ResponseEntity<Student> findCourseById(@PathVariable int id){
 
         return new ResponseEntity<>(studentService.findById(id), HttpStatus.OK);
     }
@@ -39,6 +39,18 @@ public class StudentController {
         return studentService.save(student);
 
     }
+
+    @DeleteMapping("/students/{id}")
+    public String deleteEmployeeById(@PathVariable int id){
+        studentService.deleteById(id);
+        return "Deleted...";
+    }
+
+    @PutMapping("/students")
+    public Student update(@RequestBody Student student){
+        return studentService.update(student);
+    }
+
 
 
 

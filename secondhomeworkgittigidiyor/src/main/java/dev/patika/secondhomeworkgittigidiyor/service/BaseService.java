@@ -8,4 +8,5 @@ public interface BaseService<T> {
     T findById(int id);
     T save(T object);
     void deleteById(int id);
+    T update(T object);
 }
