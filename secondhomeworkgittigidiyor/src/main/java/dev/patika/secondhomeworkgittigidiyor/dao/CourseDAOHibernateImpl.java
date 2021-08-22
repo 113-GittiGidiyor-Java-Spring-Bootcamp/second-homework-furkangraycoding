@@ -42,6 +42,15 @@ public class CourseDAOHibernateImpl implements CourseDAO<Course>{
 
     @Override
     @Transactional
+    public void delete(Course course) {
+        int id=course.getId();
+        Course course1 = this.findById(id);
+        entityManager.remove(course1);
+
+    }
+
+    @Override
+    @Transactional
     public void deleteById(int id) {
         Course course = this.findById(id);
 

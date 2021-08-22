@@ -42,6 +42,13 @@ public class CourseService implements BaseService<Course> {
         return (Course) courseDAOJPA.save(course);
 
     }
+    @Override
+    @Transactional
+    public void delete(Course course) {
+
+        courseDAOJPA.delete(course);
+
+    }
 
     @Override
     @Transactional

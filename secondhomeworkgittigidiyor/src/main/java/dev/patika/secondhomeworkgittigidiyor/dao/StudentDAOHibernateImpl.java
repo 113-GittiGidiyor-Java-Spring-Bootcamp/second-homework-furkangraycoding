@@ -38,6 +38,14 @@ public class StudentDAOHibernateImpl implements StudentDAO<Student>{
         Session session= entityManager.unwrap(Session.class);
         return (Student) session.merge(student);
     }
+    @Override
+    @Transactional
+    public void delete(Student student) {
+        int id=student.getId();
+        Student student1 = this.findById(id);
+        entityManager.remove(student1);
+
+    }
 
     @Override
     @Transactional

@@ -39,6 +39,15 @@ public class InstructorDAOJPAImpl implements InstructorDAO<Instructor> {
 
     @Override
     @Transactional
+    public void delete(Instructor instructor) {
+        int id=instructor.getId();
+        Instructor instructor1 = this.findById(id);
+        entityManager.remove(instructor1);
+
+    }
+
+    @Override
+    @Transactional
     public void deleteById(int id) {
         Instructor instructor = this.findById(id);
 

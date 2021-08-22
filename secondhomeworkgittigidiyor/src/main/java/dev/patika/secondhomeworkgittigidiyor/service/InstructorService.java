@@ -37,6 +37,13 @@ public class InstructorService implements BaseService<Instructor> {
         return (Instructor) instructorDAOJPA.save(instructor);
 
     }
+    @Override
+    @Transactional
+    public void delete(Instructor instructor) {
+
+        instructorDAOJPA.delete(instructor);
+
+    }
 
     @Override
     @Transactional

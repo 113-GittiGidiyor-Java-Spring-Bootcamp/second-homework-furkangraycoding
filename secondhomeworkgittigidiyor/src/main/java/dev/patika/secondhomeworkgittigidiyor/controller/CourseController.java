@@ -40,9 +40,15 @@ public class CourseController {
         return courseService.save(course);
 
     }
+    @DeleteMapping("/courses")
+    public void deleteCourse(@RequestBody Course course){
+
+        courseService.delete(course);
+
+    }
 
     @DeleteMapping("/courses/{id}")
-    public String deleteEmployeeById(@PathVariable int id){
+    public String deleteCourseById(@PathVariable int id){
         courseService.deleteById(id);
         return "Deleted...";
     }

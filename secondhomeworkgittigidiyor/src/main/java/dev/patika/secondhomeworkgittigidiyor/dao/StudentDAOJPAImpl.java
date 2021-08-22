@@ -35,12 +35,19 @@ public class StudentDAOJPAImpl implements StudentDAO<Student> {
         return entityManager.merge(student);
 
     }
+    @Override
+    @Transactional
+    public void delete(Student student) {
+        int id=student.getId();
+        Student student1 = this.findById(id);
+        entityManager.remove(student1);
+
+    }
 
     @Override
     @Transactional
     public void deleteById(int id) {
         Student student = this.findById(id);
-
         entityManager.remove(student);
     }
 

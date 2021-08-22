@@ -1,6 +1,7 @@
 package dev.patika.secondhomeworkgittigidiyor.dao;
 
 import dev.patika.secondhomeworkgittigidiyor.model.Course;
+import dev.patika.secondhomeworkgittigidiyor.model.Instructor;
 import dev.patika.secondhomeworkgittigidiyor.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,6 +34,14 @@ public class CourseDAOJPAImpl implements CourseDAO<Course> {
     public Course save(Course course) {
 
         return entityManager.merge(course);
+
+    }
+    @Override
+    @Transactional
+    public void delete(Course course) {
+        int id=course.getId();
+        Course course1 = this.findById(id);
+        entityManager.remove(course1);
 
     }
 

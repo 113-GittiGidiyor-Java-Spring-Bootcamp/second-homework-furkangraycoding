@@ -42,6 +42,13 @@ public class StudentService implements BaseService<Student> {
         return (Student) studentDAOJPA.save(student);
 
     }
+    @Override
+    @Transactional
+    public void delete(Student student) {
+
+        studentDAOJPA.delete(student);
+
+    }
 
     @Override
     @Transactional

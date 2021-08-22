@@ -39,9 +39,15 @@ public class StudentController {
         return studentService.save(student);
 
     }
+    @DeleteMapping("/students")
+    public void deleteStudent(@RequestBody Student student){
+
+        studentService.delete(student);
+
+    }
 
     @DeleteMapping("/students/{id}")
-    public String deleteEmployeeById(@PathVariable int id){
+    public String deleteStudentById(@PathVariable int id){
         studentService.deleteById(id);
         return "Deleted...";
     }
