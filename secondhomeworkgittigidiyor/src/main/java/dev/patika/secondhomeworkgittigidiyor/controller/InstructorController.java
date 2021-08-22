@@ -22,7 +22,6 @@ public class InstructorController {
 
     @GetMapping("/instructors")
     public ResponseEntity<List<Instructor>> findAll(){
-
         return new ResponseEntity<>(instructorService.findAll(), HttpStatus.OK);
     }
 
