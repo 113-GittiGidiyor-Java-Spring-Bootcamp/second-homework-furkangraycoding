@@ -1,6 +1,6 @@
 package dev.patika.secondhomeworkgittigidiyor.dao;
 
-import dev.patika.secondhomeworkgittigidiyor.model.Student;
+import dev.patika.secondhomeworkgittigidiyor.model.Instructor;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,32 +10,32 @@ import java.util.List;
 
 
 @Repository
-public class StudentDAOHibernateImpl implements StudentDAO<Student>{
+public class InstructorDAOHibernateImpl implements InstructorDAO<Instructor>{
 
 
     private EntityManager entityManager;
 
     @Autowired
-    public StudentDAOHibernateImpl(EntityManager entityManager) {
+    public InstructorDAOHibernateImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
-    public List<Student> findAll() {
+    public List<Instructor> findAll() {
         Session session= entityManager.unwrap(Session.class);
 
-        return session.createQuery("select s from Student s",Student.class).getResultList();
+        return session.createQuery("from Instructor ",Instructor.class).getResultList();
     }
 
     @Override
-    public Student findById(int id) {
+    public Instructor findById(int id) {
         return null;
     }
 
     @Override
-    public Student save(Student student) {
+    public Instructor save(Instructor instructor) {
         Session session= entityManager.unwrap(Session.class);
-        return (Student) session.merge(student);
+        return (Instructor) session.merge(instructor);
     }
 
     @Override

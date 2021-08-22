@@ -21,6 +21,14 @@ public class Instructor {
         this.phoneNumber = phoneNumber;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @OneToMany(mappedBy = "instructor")
     private List<Course> InstructorCoursesList = new ArrayList<>();
 

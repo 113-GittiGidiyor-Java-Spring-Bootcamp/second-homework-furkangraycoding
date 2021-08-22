@@ -14,6 +14,14 @@ public class Course {
     private String courseCode;
     private int credit;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Course(String courseName, String courseCode, int credit) {
         this.courseName = courseName;
         this.courseCode = courseCode;
@@ -24,7 +32,7 @@ public class Course {
     }
 
     //Many to one
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Instructor instructor;
 
     @ManyToMany(mappedBy = "studentCourses")
