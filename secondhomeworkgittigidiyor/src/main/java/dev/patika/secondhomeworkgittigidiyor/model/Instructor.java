@@ -1,11 +1,22 @@
 package dev.patika.secondhomeworkgittigidiyor.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = PermanentInstructor.class, name = "PermanentInstructor"),
+        @JsonSubTypes.Type(value = VisitingResearcher.class, name = "VisitingResearcher")
+})
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Instructor {
     @Id

@@ -1,8 +1,11 @@
 package dev.patika.secondhomeworkgittigidiyor.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import javax.persistence.Entity;
 
 @Entity
+@JsonTypeName("VisitingResearcher")
 public class VisitingResearcher extends Instructor {
     private double hourlySalary;
 

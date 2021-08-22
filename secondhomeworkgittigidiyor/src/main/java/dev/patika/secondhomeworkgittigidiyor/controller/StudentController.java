@@ -51,6 +51,12 @@ public class StudentController {
         return studentService.update(student);
     }
 
+    @PutMapping("/students/{id}")
+    public String updateById(@RequestBody Student student, @PathVariable int id){
+        studentService.updateById(student,id);
+        return "Updated...";
+    }
+
 
 
 

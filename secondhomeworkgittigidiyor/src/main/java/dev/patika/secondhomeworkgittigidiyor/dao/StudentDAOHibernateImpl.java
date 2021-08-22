@@ -52,4 +52,15 @@ public class StudentDAOHibernateImpl implements StudentDAO<Student>{
     public Student update(Student student) {
         return entityManager.merge(student);
     }
+    @Override
+    @Transactional
+    public void updateById(Student student,int id) {
+        Student student1 = this.findById(id);
+        student1.setAddress(student.getAddress());
+        student1.setName(student.getName());
+        student1.setBirthDate(student.getBirthDate());
+        student1.setGender(student.getGender());
+
+        entityManager.merge(student1);
+    }
 }

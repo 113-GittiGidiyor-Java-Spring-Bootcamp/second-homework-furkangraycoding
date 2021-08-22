@@ -49,4 +49,16 @@ public class CourseDAOJPAImpl implements CourseDAO<Course> {
     public Course update(Course course) {
         return entityManager.merge(course);
     }
+
+    @Override
+    @Transactional
+    public void updateById(Course course,int id) {
+        Course course1 = this.findById(id);
+        course1.setCourseCode(course.getCourseCode());
+        course1.setCourseName(course.getCourseName());
+        course1.setCredit(course.getCredit());
+        course1.setInstructor(course.getInstructor());
+        course1.setStudentList(course.getStudentList());
+        entityManager.merge(course1);
+    }
 }

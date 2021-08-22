@@ -54,4 +54,9 @@ public class CourseService implements BaseService<Course> {
         return (Course) courseDAOJPA.update(course);
     }
 
+    @Override
+    public void updateById(Course course,int id) {
+         courseDAOJPA.updateById(course,id);
+    }
+
 }

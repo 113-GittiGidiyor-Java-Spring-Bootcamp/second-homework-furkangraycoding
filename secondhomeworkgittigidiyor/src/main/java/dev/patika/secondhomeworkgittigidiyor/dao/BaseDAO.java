@@ -12,4 +12,5 @@ public interface BaseDAO<T> {
     T save(T object);
     void deleteById(int id);
     T update(T object);
+    void updateById(T object, int id);
 }

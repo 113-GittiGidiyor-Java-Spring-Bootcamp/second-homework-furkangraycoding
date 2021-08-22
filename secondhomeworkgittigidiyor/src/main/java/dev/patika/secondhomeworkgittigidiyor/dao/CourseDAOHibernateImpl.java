@@ -53,4 +53,14 @@ public class CourseDAOHibernateImpl implements CourseDAO<Course>{
     public Course update(Course course) {
         return entityManager.merge(course);
     }
+
+    @Override
+    @Transactional
+    public void updateById(Course course,int id) {
+        Course course1 = this.findById(id);
+        course1.setCourseCode(course.getCourseCode());
+        course1.setCourseName(course.getCourseName());
+        course1.setCredit(course.getCredit());
+        entityManager.merge(course1);
+    }
 }

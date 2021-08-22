@@ -53,4 +53,14 @@ public class InstructorDAOHibernateImpl implements InstructorDAO<Instructor>{
     public Instructor update(Instructor instructor) {
         return entityManager.merge(instructor);
     }
+    @Override
+    @Transactional
+    public void updateById(Instructor instructor,int id) {
+        Instructor instructor1 = this.findById(id);
+        instructor1.setAddress(instructor.getAddress());
+        instructor1.setName(instructor.getName());
+        instructor1.setInstructorCoursesList(instructor.getInstructorCoursesList());
+        instructor1.setPhoneNumber(instructor.getPhoneNumber());
+        entityManager.merge(instructor1);
+    }
 }

@@ -53,4 +53,9 @@ public class StudentService implements BaseService<Student> {
     public Student update(Student student) {
         return (Student) studentDAOJPA.update(student);
     }
+
+    @Override
+    public void updateById(Student student,int id) {
+        studentDAOJPA.updateById(student,id);
+    }
 }

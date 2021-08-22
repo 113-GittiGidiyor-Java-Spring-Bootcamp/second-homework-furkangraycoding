@@ -49,4 +49,9 @@ public class InstructorService implements BaseService<Instructor> {
         return (Instructor) instructorDAOJPA.update(instructor);
     }
 
+    @Override
+    public void updateById(Instructor instructor, int id) {
+        instructorDAOJPA.updateById(instructor,id);
+    }
+
 }

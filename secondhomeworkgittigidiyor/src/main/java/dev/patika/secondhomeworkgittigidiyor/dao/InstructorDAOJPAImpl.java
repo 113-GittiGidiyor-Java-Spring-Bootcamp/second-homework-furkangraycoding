@@ -1,5 +1,6 @@
 package dev.patika.secondhomeworkgittigidiyor.dao;
 
+import dev.patika.secondhomeworkgittigidiyor.model.Course;
 import dev.patika.secondhomeworkgittigidiyor.model.Instructor;
 import dev.patika.secondhomeworkgittigidiyor.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,17 @@ public class InstructorDAOJPAImpl implements InstructorDAO<Instructor> {
     @Transactional
     public Instructor update(Instructor instructor) {
         return entityManager.merge(instructor);
+    }
+
+
+    @Override
+    @Transactional
+    public void updateById(Instructor instructor,int id) {
+        Instructor instructor1 = this.findById(id);
+        instructor1.setAddress(instructor.getAddress());
+        instructor1.setName(instructor.getName());
+        instructor1.setInstructorCoursesList(instructor.getInstructorCoursesList());
+        instructor1.setPhoneNumber(instructor.getPhoneNumber());
+        entityManager.merge(instructor1);
     }
 }
